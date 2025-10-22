@@ -47,23 +47,18 @@ def user_register(request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            try:
-                user = User.objects.create_user(
-                    email=data['email'],
-                    full_name=data['full_name'],
-                    password=data['password']
-                )
-                messages.success(request, 'Usuario registrado correctamente. Inicia sesión.')
-                return redirect('accounts:user_login')
-            except IntegrityError:
-                form.add_error('email', 'Este correo ya está registrado.')
+            user = User.objects.create_user(
+                email=data['email'],
+                full_name=data['full_name'],
+                password=data['password']
+            )
+            return redirect('accounts:user_login')
     else:
         form = UserRegistrationForm()
-
     context = {'title': 'Registrarse', 'form': form}
     return render(request, 'register.html', context)
 
-    
+
 def user_login(request):
     if request.method == 'POST':
         form = UserLoginForm(request.POST)

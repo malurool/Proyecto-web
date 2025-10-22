@@ -20,23 +20,22 @@ class UserLoginForm(forms.Form):
 class UserRegistrationForm(forms.Form):
     email = forms.EmailField(
         label='Correo electrónico',
-        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su correo electrónico'})
+        widget=forms.EmailInput(
+            attrs={'class': 'form-control', 'placeholder': 'Ingrese su correo electrónico'}
+        )
     )
     full_name = forms.CharField(
         label='Nombre completo',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su nombre completo'})
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'placeholder': 'Ingrese su nombre completo'}
+        )
     )
     password = forms.CharField(
         label='Contraseña',
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Cree una contraseña'})
+        widget=forms.PasswordInput(
+            attrs={'class': 'form-control', 'placeholder': 'Cree una contraseña'}
+        )
     )
-
-    def clean_email(self):
-        email = self.cleaned_data['email']
-        from .models import User
-        if User.objects.filter(email=email).exists():
-            raise forms.ValidationError('Ya existe un usuario con este correo electrónico.')
-        return email
 
 
 class ManagerLoginForm(forms.Form):
