@@ -77,9 +77,7 @@ def search(request):
 
 
 def filter_by_category(request, slug):
-	"""when user clicks on parent category
-	we want to show all products in its sub-categories too
-	"""
+
 	result = []
 	category = Category.objects.filter(slug=slug).first()
 	[result.append(product) \
