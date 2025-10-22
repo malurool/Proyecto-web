@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-md-8 offset-md-2 mt-4">
+  <h2 class="mb-4 text-center">Contáctanos</h2>
+  <p class="text-center mb-4">¿Tienes alguna pregunta o comentario? Escríbenos y te responderemos pronto 💌</p>
+
+  <!-- Mensajes de éxito/error: solo una vez -->
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-success text-center">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <form method="post" class="card p-4 shadow-sm">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary w-100">Enviar</button>
+  </form>
+</div>
+{% endblock %}
