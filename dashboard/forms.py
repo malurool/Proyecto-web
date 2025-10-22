@@ -8,6 +8,13 @@ class AddProductForm(ModelForm):
     class Meta:
         model = Product
         fields = ['category', 'image', 'title','description', 'price']
+        labels = {
+            'title' : 'Título',
+            'category' : 'Categoria',
+            'image' : 'Imagen',
+            'description' : 'Descripción',
+            'price' : 'Precio',
+        }
 
     def __init__(self, *args, **kwargs):
         super(AddProductForm, self).__init__(*args, **kwargs)
@@ -18,13 +25,14 @@ class AddProductForm(ModelForm):
 class AddCategoryForm(ModelForm):
     class Meta:
         model = Category
-        fields = ['title', 'sub_category', 'is_sub']
+        fields = ['title']
+        labels = {
+            'title' : 'Título',
+        }
     
 
     def __init__(self, *args, **kwargs):
         super(AddCategoryForm, self).__init__(*args, **kwargs)
-        self.fields['is_sub'].widget.attrs['class'] = 'form-check-input'
-        self.fields['sub_category'].widget.attrs['class'] = 'form-control'
         self.fields['title'].widget.attrs['class'] = 'form-control'
 
 

@@ -34,7 +34,7 @@ def add_product(request):
         form = AddProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Product added Successfuly!')
+            messages.success(request, 'Producto añadido exitosamente!')
             return redirect('dashboard:add_product')
     else:
         form = AddProductForm()
@@ -73,7 +73,7 @@ def add_category(request):
         form = AddCategoryForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Category añadida!')
+            messages.success(request, 'Categoria añadida!')
             return redirect('dashboard:add_category')
     else:
         form = AddCategoryForm()
